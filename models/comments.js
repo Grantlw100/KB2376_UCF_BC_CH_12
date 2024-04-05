@@ -50,7 +50,7 @@ Comment.init({
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     },
     is_reply: {
-        type: DataTypes.BOOLEAN, // Correct
+        type: DataTypes.BOOLEAN, 
         allowNull: true,
         defaultValue: false
     },    

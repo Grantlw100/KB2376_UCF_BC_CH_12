@@ -7,32 +7,11 @@
   <title>Forerunner Forum</title>
     <link rel="stylesheet" href="/src/style.css"></link>
 
-{{!-- <script>
-  new Promise((resolve, reject) => {
-      let tag = document.createElement('script');
-      tag.src = "/js/index.var.js";
-      tag.async = true;
-      tag.onload = () => {
-          resolve();
-      };
 
-      let firstScript = document.getElementsByTagName('script')[0]
-      firstScript.parentNode.insertBefore(tag, firstScript);
-  }).then(() => {
-      notifier = new AWN({
-          maxNotifications: 6,
-          durations: {
-              global: 60000}
-          }
-      )    
-  });
-  
-</script>     --}}
 
 </head>
 <body>
     <header>
-        <!-- Navigation bar -->
         {{#if logged_in}}
             <nav class="shadow-md flex justify-between items-center py-1 px-6">
                 <button id="Dropdown" data-dropdown-toggle="dropdown" class="place-self-end text-white  bg-gradient-to-r from-blue-600 hover:from-gray-400 hover:to-blue-700 to-black  focus:outline-none font-medium rounded-lg text-base top-0 px-12 mb-3 mr-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button">
@@ -80,15 +59,12 @@
 
     </header>
     <main>
-        <!-- Main content area where specific page content will be injected -->
         {{{body}}}
     </main>
     <footer>
-        <!-- Footer content -->
         <p>&copy; 2024 Your Website</p>
     </footer>
 
-    <!-- Link to JavaScript files -->
     <script src="/js/dropdown.js"></script>
 </body>
 

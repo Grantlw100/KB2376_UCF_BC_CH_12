@@ -21,11 +21,9 @@ async function sendNotification({ type, sender_id, receiver_id, reference_id, en
             body = `${sender.userName} followed you`;
             break;
         default:
-            // handle default case here
             break;
     }
 
-    // If customMessage is not provided, it remains undefined
     let messageContent = customMessage ? customMessage : null;
 
     await Notification.create({
@@ -36,7 +34,7 @@ async function sendNotification({ type, sender_id, receiver_id, reference_id, en
         receiver_id,
         body,
         entityType,
-        message: messageContent, // Use the customMessage for the message field
+        message: messageContent, 
     });
 }
 

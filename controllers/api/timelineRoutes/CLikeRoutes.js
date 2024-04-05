@@ -4,13 +4,6 @@ const { CLike } = require('../../../models');
 const sendNotification = require('../../../utils/sendNotification');
 const Follower = require('../../../models')
 
-// Comment Likes (CLike): Similar to post likes, but nested under comments.
-
-// POST /api/posts/:post_id/comments/:comment_id/likes - Like a comment
-// DELETE /api/posts/:post_id/comments/:comment_id/likes/:like_id - Unlike a comment
-// Get /api/posts/:post_id/comments/:comment_id/likes - Get likes for a comment
-// Get /api/posts/:post_id/comments/:comment_id/likes/:like_id - Get a specific like for a comment
-
 router.get('/:post_id/comments/:comment_id/likes', withAuth, async (req, res) => {
     try {
         const likes = await CLike.findAll({

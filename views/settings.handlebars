@@ -4,7 +4,6 @@
 
     <p>Change your settings here</p>
 
-    <!-- General Settings Form -->
     <form class="form settings-for-general">
         <div class="form-group">
             <label for="name">Name:</label>
@@ -21,18 +20,6 @@
         <button class="btn btn-primary" type="submit">Save</button>
     </form>
 
-    <!-- Profile Picture Upload Form -->
-    {{!-- <form class="form settings-form" action="#" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="profile-picture">Profile Picture:</label>
-            <input class="form-input" type="file" id="profile-picture" name="profile-picture" />
-        </div>
-        <button class="btn btn-primary" type="submit">Upload</button>
-    </form> --}}
-
-    
-
-    <!-- Notification Settings Form -->
     <form class="form settings-form" id="notification-settings-form">
         <div class="form-group">
             <label class="switch">
@@ -52,7 +39,6 @@
     </form>
 </div>
 
-<!-- Delete Account Form -->
     <form class="form settings-for-delete" action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
         <div class="form-group">
             <label for="delete-account">Delete Account:</label>

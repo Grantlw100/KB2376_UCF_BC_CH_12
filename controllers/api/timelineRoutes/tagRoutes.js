@@ -3,15 +3,6 @@ const router = require('express').Router();
 const { Tag } = require('../../../models');
 const { sendNotification } = require('../../../utils/sendNotification');
 
-
-// Tags: If tags are used to tag users in posts, consider whether tags should be managed independently or within the context of posts.
-
-// POST /api/posts/:postId/tags - Tag a user in a post
-// GET /api/posts/:postId/tags - Get tags for a post
-// DELETE /api/posts/:postId/tags/:tagId - Remove a tag from a post
-// GET /api/posts/:postId/tags/:tagId - Get a specific tag for a post
-// PUT /api/posts/:postId/tags/:tagId - Update a specific tag for a post
-
 router.get('/:post_id/tags', withAuth, async (req, res) => {
     console.log('Getting all tags');
     try {
@@ -93,21 +84,17 @@ router.post('/comments/:comment_id/tags', withAuth, async (req, res) => {
     }
 
     try {
-        const { user_id } = req.body; // Assuming user_id of the user to be tagged is sent in the request body
+        const { user_id } = req.body; 
         const comment_id = req.params.comment_id;
-
-        // Optional: Check if the comment exists before proceeding to tag
 
         const newTag = await Tag.create({
             user_id,
             comment_id: comment_id,
         });
-
-        // Send notification about tagging
         const notification = {
             type: 'tagged',
             sender_id: req.session.user_id,
-            receiver_id: user_id, // User being tagged
+            receiver_id: user_id,
             reference_id: newTag.id,
             entityType: 'account'
         };

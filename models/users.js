@@ -38,13 +38,12 @@ User.init(
     notificationsEnabled: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true, // By default, notifications are enabled
+        defaultValue: true,
     },
-    // Add a field for dark mode
     darkModeEnabled: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false, // By default, dark mode is disabled
+        defaultValue: false, 
     },
     password: {
         type: DataTypes.STRING,

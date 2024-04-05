@@ -3,14 +3,6 @@ const withAuth = require('../../../utils/auth');
 const { Follower, Notification } = require('../../../models');
 const sendNotification = require('../../../utils/sendNotification');
 
-// Followers: Since followers are directly related to users, you might consider nesting these routes under users to reflect the relationship.
-
-// POST /api/users - User follows another user
-// DELETE /api/users/:user_id/unfollow - User unfollows another user
-// GET /api/usersers - List all followers of a user
-// GET /api/usersing - List all users a user is following
-// Posts, Comments, Tags, Likes (PLike and CLike)
-
 router.get('/', withAuth, async (req, res) => {
     if (!req.params.user_id) {
         res.status(404).json({ message: "No user found with this id!" });
@@ -57,7 +49,7 @@ router.post('/', withAuth, async (req, res) => {
     console.log('Adding follower',req.body);
     try {
         const newFollower = await Follower.create({
-            follower_id: req.body.follower_id, // Changed from req.session.user_id to req.body.follower_id for clarity and consistency
+            follower_id: req.body.follower_id,
             following_id: req.body.following_id,
         });
         console.log('newFollower', newFollower);

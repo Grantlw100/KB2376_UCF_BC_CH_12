@@ -3,13 +3,6 @@ const { User, Post, Follower } = require('../../../models');
 const withAuth = require('../../../utils/auth');
 const sendNotification = require('../../../utils/sendNotification');
 
-// Users: /api/users
-
-// GET / - List all users
-// POST / - Create a new user
-// GET /:id - Get a specific user
-// PUT /:id - Update a specific user
-// DELETE /:id - Delete a specific user
 
 router.get('/', withAuth, async (req, res) => {
     console.log('Getting all users');
@@ -22,7 +15,6 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-// Adjusting the route based on the assumption that 'posts' is correctly associated with 'User'
 router.get('/findByUserName/:userName', withAuth, async (req, res) => {
     try {
         const loggedInUserId = req.session.user_id;
@@ -45,7 +37,6 @@ router.get('/findByUserName/:userName', withAuth, async (req, res) => {
                 }
             });
 
-            // Prepare posts data
             const postsData = posts.map(post => ({
                 id: post.id, 
                 title: post.title, 
@@ -54,7 +45,6 @@ router.get('/findByUserName/:userName', withAuth, async (req, res) => {
             }));
 
             console.log('Posts:', postsData);
-            // Common context data for both templates
             let myProfile = null;
             loggedInUserId === user.id ? myProfile = true : myProfile = null;
 
@@ -71,9 +61,6 @@ router.get('/findByUserName/:userName', withAuth, async (req, res) => {
                 myProfile: myProfile,
             };
 
-            // Render specific template based on the requested userName
-            // This assumes you have some way to differentiate between 'otherprofile' and 'profile' based on the userName
-            // For example, if the requested userName is the same as the logged-in user's userName, render 'profile', else render 'otherprofile'
             const template = (req.params.userName === req.session.userName) ? 'profile' : 'otherUser';
 
             res.render(template, context);

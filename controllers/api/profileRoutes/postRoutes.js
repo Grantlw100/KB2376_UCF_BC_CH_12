@@ -5,14 +5,6 @@ const sendNotification = require('../../../utils/sendNotification');
 const { createTag, extractTags } = require('../../../utils/extractTags');
 
 
-// Posts: /api/posts
-
-// GET / - List all posts
-// POST / - Create a new post
-// GET /:id - Get a specific post
-// PUT /:id - Update a specific post
-// DELETE /:id - Delete a specific post
-
 router.get('/', withAuth, async (req, res) => {
     if (!req.session.user_id || !req.session.logged_in) {
         res.status(403).json({ message: "You are not authorized to view this page" });
@@ -33,8 +25,6 @@ router.get('/', withAuth, async (req, res) => {
 
     }
 });
-
-//Get all posts from users the logged in user is following
 
 router.get('/:post_id', withAuth, async (req, res) => {
     if (!req.params.id) {

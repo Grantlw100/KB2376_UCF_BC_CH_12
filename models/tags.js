@@ -17,7 +17,6 @@ Tag.init(
             key: 'id'
         }
     },
-    // This field is removed if you're tagging in comments instead
     comment_id: {
         type: DataTypes.INTEGER,
         references: {

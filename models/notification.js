@@ -9,7 +9,6 @@ Notification.init(
         primaryKey: true,
         autoIncrement: true
     },
-    //used for the user who is receiving the notification
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

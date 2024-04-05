@@ -3,13 +3,6 @@ const withAuth = require('../../../utils/auth');
 const { PLike, Post, Follower } = require('../../../models');
 const sendNotification = require('../../../utils/sendNotification');
 
-// Post Likes (PLike): Likes related to posts can also be nested under posts.
-
-// POST /api/posts/:post_id/likes - Like a post
-// DELETE /api/posts/:post_id/likes/:like_id - Unlike a post
-// GET /api/posts/:post_id/likes - Get likes for a post
-// GET /api/posts/:post_id/likes/:like_id - Get a specific like for a post
-
 router.get('/', withAuth, async (req, res) => {
     if (!req.params.post_id) {
         res.status(404).json({ message: "No post found with this id!" });
@@ -50,7 +43,6 @@ router.get('/:post_id/:like_id', withAuth, async (req, res) => {
         } 
     
         const post_id = req.params.post_id;
-        // Fetch post to get author's ID
         const post = await Post.findByPk(post_id, {
             attributes: ['user_id'],
         });
@@ -60,8 +52,7 @@ router.get('/:post_id/:like_id', withAuth, async (req, res) => {
         }
     
         const user_id = req.session.user_id;
-        const author_id = post.user_id; // Author of the post
-        // Check if the current user follows the author
+        const author_id = post.user_id; 
         const isFollower = await Follower.findOne({
             where: {
                 follower_id: user_id,
@@ -77,7 +68,6 @@ router.get('/:post_id/:like_id', withAuth, async (req, res) => {
             });
     
             if (newPLike) {
-                // Assuming you have a function sendNotification implemented
                 const notification = {
                     type: 'liked',
                     sender_id: user_id,
@@ -85,7 +75,7 @@ router.get('/:post_id/:like_id', withAuth, async (req, res) => {
                     reference_id: newPLike.id,
                     entityType: 'post',
                 };
-                sendNotification(notification); // Make sure this function is properly implemented
+                sendNotification(notification); 
             }
     
             res.json(newPLike);

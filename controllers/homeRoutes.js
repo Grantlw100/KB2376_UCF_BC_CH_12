@@ -69,9 +69,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
               model: Tag,
               attributes: ['id']
             },
-            // Assuming Replies are a self-relation, handle it here if necessary
             {
-              model: Comment, // Assuming you have a self-relation for replies
+              model: Comment,
               as: 'Replies',
               attributes: ['id','user_id' ,'content', 'createdAt', 'tag_id', 'is_reply', 'original_comment_id'],
               include: 
@@ -109,15 +108,14 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 ] 
             },
           ],
-          limit: 3 // Limit comments if applicable
+          limit: 3 
         }
       ],
-      order: [['createdAt', 'DESC']], // Order posts by creation date
-      limit: 10 // Consider implementing pagination
+      order: [['createdAt', 'DESC']],
+      limit: 10 
     });
     console.log("Raw Post Data:", JSON.stringify(postData, null, 2));
 
-    // Assuming postData is the result from your Post.findAll() query
     const transformedPosts = postData.map(post => {
       return {
         id: post.id,
@@ -126,9 +124,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
         userName: post.user.userName,
         profilePictureUrl: post.user.profile_pic,
         postCreatorId: post.user.id,
-        likesCount: post.plikes.length, // Directly access the length of plikes
+        likesCount: post.plikes.length,
         createdAt: post.createdAt,
-        // Determine if the logged-in user has liked the post
         userLiked: post.plikes.some(like => like.user_id === req.session.user_id),
         comments: post.comments.map(comment => {
           return {
@@ -136,9 +133,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
             content: comment.content,
             userName: comment.user.userName,
             commentCreatorId: comment.user.id,
-            likesCount: comment.clikes.length, // Directly access the length of clikes for the comment
+            likesCount: comment.clikes.length, 
             isUserComment: comment.user_id === req.session.user_id,
-            // Determine if the logged-in user has liked the comment
             userLiked: comment.clikes.some(like => like.user_id === req.session.user_id),
             replies: comment.Replies.map(reply => {
               return {
@@ -146,16 +142,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 content: reply.content,
                 userName: reply.user.userName,
                 replyCreatorId: reply.user.id,
-                likesCount: reply.clikes.length, // Directly access the length of clikes for the reply
+                likesCount: reply.clikes.length, 
                 isUserReply: reply.user_id === req.session.user_id,
-                // Determine if the logged-in user has liked the reply
                 userLiked: reply.clikes.some(like => like.user_id === req.session.user_id),
               };
         }),
-        // Include additional fields as necessary
       };
     }),
-    // Include additional fields as necessary
   };
 });
 console.log("Transformed Posts:", JSON.stringify(transformedPosts, null, 2));
@@ -269,7 +262,7 @@ router.get('/messages', withAuth, async (req, res) => {
 
       const notifications = await Notification.findAll({
           where: { receiver_id: req.session.user_id },
-          order: [['createdAt', 'DESC']], // Order by most recent
+          order: [['createdAt', 'DESC']], 
           include: [{
               model: User,
               as: 'Sender',
@@ -279,7 +272,6 @@ router.get('/messages', withAuth, async (req, res) => {
 
       console.log('Fetched notifications:', JSON.stringify(notifications, null, 2));
 
-      // Map notifications to extract needed data
       const mappedNotifications = notifications.map(notification => ({
           id: notification.id,
           type: notification.type,
@@ -287,12 +279,11 @@ router.get('/messages', withAuth, async (req, res) => {
           entityType: notification.entityType,
           createdAt: notification.createdAt,
           message: notification.message,
-          senderName: notification.Sender ? notification.Sender.userName : 'Unknown', // Handle potential null Sender
-      }));
+          senderName: notification.Sender ? notification.Sender.userName : 'Unknown', 
+        }));
 
       console.log('Mapped notifications:', JSON.stringify(mappedNotifications, null, 2));
 
-      // Separate messages and general notifications
       const messages = mappedNotifications.filter(notification => notification.message !== null);
       const generalNotifications = mappedNotifications.filter(notification => notification.message === null);
 
