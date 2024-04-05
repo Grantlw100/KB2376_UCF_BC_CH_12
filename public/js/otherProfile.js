@@ -9,7 +9,7 @@ console.log(follower_id, following_id)
 const followUser = async (event) => {
     event.preventDefault();
     const following_id = event.target.dataset.userId;
-    const follower_id = document.body.dataset.loggedInUserId; // Assuming you have the logged-in user's ID stored in the body's data attribute
+    const follower_id = document.body.dataset.loggedInUserId; 
     console.log('Following user:', following_id, 'from user:', follower_id);
     const response = await fetch(`/api/profile/follow/`, {
         method: 'POST',

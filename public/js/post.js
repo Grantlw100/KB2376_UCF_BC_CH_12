@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (postForm) {
         postForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the form from submitting through the HTML form action
-            
-            // Collecting form data
+            event.preventDefault();
             const formData = new FormData(postForm);
             const postData = {
                 title: formData.get('title'),
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             try {
-                // Sending a POST request to the server to create a new post
                 const response = await fetch('/api/profile/:user_id/posts/', { // Assuming your API endpoint for creating a post is '/api/posts'
                     method: 'POST',
                     headers: {
@@ -26,14 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Post created successfully');
                     alert('Post created successfully! Taking you back to your Dashboard.');
                     window.location.href = '/dashboard';
-         // Example redirect after creating a post
                 } else {
                     const errorData = await response.json();
                     throw new Error(errorData.message);
                 }
             } catch (error) {
                 console.error('Failed to create the post:', error);
-                // Display an error message on the form
             }
         });
     }

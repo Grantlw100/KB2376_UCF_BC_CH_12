@@ -1,33 +1,44 @@
-
-<section class="hero">
+<section class="hero bg-primary text-white text-center py-5">
     <h1>Welcome to Our Application</h1>
     <p>Discover, connect, and share with people around the world.</p>
     {{#unless logged_in}}
-    <a href="/signup" class="btn btn-primary">Sign Up Now</a>
+    <a href="/signup" class="btn btn-light">Sign Up Now</a>
     {{/unless}}
 </section>
 
-<section class="features">
-    <h2>Features</h2>
-    <div class="features-list">
-        <div class="feature-item">
-            <img src="/path/to/icon1" alt="Create and share posts">
-            <h3>Create and share posts</h3>
-            <p>Share your thoughts and connect with others.</p>
-        </div>
-        <div class="feature-item">
-            <img src="/path/to/icon2" alt="Follow interesting profiles">
-            <h3>Follow interesting profiles</h3>
-            <p>Discover content from creators you love.</p>
-        </div>
-        <div class="feature-item">
-            <img src="/path/to/icon3" alt="Customize your user settings">
-            <h3>Customize your user settings</h3>
-            <p>Take control of your experience.</p>
+<section class="features py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Features</h2>
+        <div class="row">
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="feature-item text-center p-4">
+                    <h3>Create and share posts</h3>
+                    <p>Share your thoughts and connect with others.</p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="feature-item text-center p-4">
+                    <h3>Follow interesting profiles</h3>
+                    <p>Discover content from creators you love.</p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="feature-item text-center p-4">
+                    <h3>Customize your user settings</h3>
+                    <p>Take control of your experience.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="testimonials">
-    <h2>What Our Users Say</h2>
+<section class="testimonials py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Users Say</h2>
+    </div>
 </section>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

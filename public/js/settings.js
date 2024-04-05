@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle general settings form submission
     const user_id = document.querySelector('.hats').getAttribute('data-user-id');
-    document.querySelector('.form.settings-for-general').addEventListener('submit', async (event) => {
+    document.querySelector('.settings-for-general').addEventListener('submit', async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const settingsData = Object.fromEntries(formData.entries());
         console.log('settingsData:', settingsData);
         try {
-            // Update general settings
             const response = await fetch(`/api/users/${user_id}`, {
                 method: 'PUT',
                 headers: {
@@ -37,20 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     */
 
-    // Handle delete account form submission
-    document.querySelector('.form.settings-for-delete').addEventListener('submit', async (event) => {
+    document.querySelector('.settings-for-delete').addEventListener('submit', async (event) => {
         event.preventDefault() ;
 
         if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
             try {
-                // Delete account
                 const response = await fetch(`/api/users/${userId}`, {
                     method: 'DELETE',
                 });
 
                 if (response.ok) {
                     alert('Account deleted successfully!');
-                    window.location.href = '/'; // Redirect to home page or login page
+                    window.location.href = '/'; 
                 } else {
                     throw new Error('Failed to delete account.');
                 }
@@ -60,8 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Handle notification settings form submission
-    document.querySelector('.form.settings-form').addEventListener('submit', async (event) => {
+    document.querySelector('.settings-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
@@ -74,10 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('user_id:', user_id);
         if (!user_id) {
             console.error('User ID is undefined or not found.');
-            return; // Exit the function if user_id is not available
         }
         try {
-            // Update notification settings
             const response = await fetch(`/api/profile/${user_id}/subsettings`, {
                 method: 'PUT',
                 headers: {

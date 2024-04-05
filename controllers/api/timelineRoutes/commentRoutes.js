@@ -127,7 +127,7 @@ router.post('/:post_id', withAuth, async (req, res) => {
         if (newComment) {
             const notification = {
                 user_id: postCreatorId,
-                type: 'commented on',
+                type: 'commented',
                 sender_id: req.session.user_id,
                 receiver_id: postCreatorId,
                 reference_id: newComment.id,
@@ -142,7 +142,7 @@ router.post('/:post_id', withAuth, async (req, res) => {
             for (let i = 0; i < newTags.length; i++) {
                 const notification = {
                     user_id: newTags[i].user_id,
-                    type: 'tagged',
+                    type: 'tagged comment',
                     sender_id: req.session.user_id,
                     receiver_id: newTags[i].user_id,
                     reference_id: newComment.id,
@@ -193,7 +193,7 @@ router.post('/replies/:comment_id', withAuth, async (req, res) => {
         if (newComment) {
             const notification = {
                 user_id: originalCommentCreatorId,
-                type: 'replied to',
+                type: 'replied',
                 sender_id: req.session.user_id,
                 receiver_id: originalCommentCreatorId,
                 reference_id: newComment.id,
@@ -336,7 +336,7 @@ router.post('/likes/:comment_id', withAuth, async (req, res) => {
         if (newCLike) {
             sendNotification({
                 user_id: postCreatorId,
-                type: 'liked',
+                type: 'liked comment',
                 sender_id: userId,
                 receiver_id: postCreatorId,
                 reference_id: newCLike.id,

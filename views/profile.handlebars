@@ -1,24 +1,40 @@
 <body class="hats" data-user-id="{{user_id}}">
 <div class="container mt-5">
-    <h1>Profile</h1>
     <div class="row">
-        <div class="col-md-4">
-            <img src="{{profilePicture}}" alt="Profile Picture" class="img-thumbnail" id="profile-picture">
-            <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+        <div class="col-md-4 text-center">
+            <img src="/assets/maxresdefault.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 200px;">
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
         </div>
         <div class="col-md-8">
-            <h2>{{userName}}</h2>
-            <p>Name: {{name}}</p>
+            <h1 class="mb-2">{{userName}}</h1>
+            <p class="lead">Name: {{name}}</p>
             <h3>Posts</h3>
-            <ul class="list-group">
+            <ul class="list-group list-group-flush">
                 {{#each posts}}
-                <li class="list-group-item">{{this.title}} - <small>{{this.createdAt}}</small></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{this.title}}
+                    <small class="text-muted">{{format_date this.createdAt}}</small>
+                </li>
                 {{/each}}
             </ul>
         </div>
     </div>
 </div>
 
-<nav><a href="/settings">Settings</a></nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Your Site</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/settings">Settings</a>
+                <!-- Add more navigation links here -->
+            </div>
+        </div>
+    </div>
+</nav>
 
 <script src="/js/profile.js"></script>
+</body>

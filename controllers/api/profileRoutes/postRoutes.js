@@ -63,7 +63,7 @@ router.post('/', withAuth, async (req, res) => {
             for (let i = 0; i < newTags.length; i++) {
                 const notification = {
                     user_id: newTags[i].user_id,
-                    type: 'tag',
+                    type: 'tagged',
                     reference_id: newPost.id,
                     sender_id: user_id,
                     receiver_id: newTags[i].user_id,

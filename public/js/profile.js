@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const user_id = document.body.dataset.user_id; // Assuming the user ID is stored as a data attribute on the body
-
+  const user_id = document.body.dataset.user_id; 
   try {
       const response = await fetch(`/api/profile/${user_id}/posts/`, {
           method: 'GET',
@@ -23,10 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 function updatePostsOnProfile(posts) {
   const postsList = document.querySelector('.list-group');
 
-  // Clear existing posts
   postsList.innerHTML = '';
 
-  // Append new posts
   posts.forEach(post => {
       const postElement = document.createElement('div');
       postElement.classList.add('list-group-item', 'list-group-item-action');

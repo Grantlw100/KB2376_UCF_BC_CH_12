@@ -1,80 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     document.querySelectorAll('.delete-post-button').forEach(button => {
-//         button.addEventListener('click', deletePost);
-//     });
-
-    
-
-//     document.querySelectorAll('.dislike-button').forEach(button => {
-//         button.addEventListener('click', dislikePost);
-//     });
-
-//     document.querySelectorAll('.add-comment-button').forEach(button => {
-//         button.addEventListener('click', addComment);
-//     })
-
-//     document.querySelectorAll('.like-comment-button').forEach(button => {
-//         button.addEventListener('click', likeComment);
-//     })  
-//     document.querySelectorAll('.dislike-comment-button').forEach(button => {
-//         button.addEventListener('click', dislikeComment);
-//     })
-
-//     document.querySelectorAll('.delete-comment-button').forEach(button => {
-//         button.addEventListener('click', deleteComment);
-//     })
-
-//     document.querySelectorAll('.get-replies-button').forEach(button => {
-//         button.addEventListener('click', getReplies);
-//     })
-
-//     document.querySelectorAll('.add-reply-button').forEach(button => {
-//         button.addEventListener('click', addReply);
-//     })
-
-//     document.querySelectorAll('.like-reply-button').forEach(button => {
-//         button.addEventListener('click', likeReply);
-//     })
-
-//     document.querySelectorAll('.dislike-reply-button').forEach(button => {
-//         button.addEventListener('click', dislikeReply);
-//     })
-
-//     document.querySelectorAll('.delete-reply-button').forEach(button => {
-//         button.addEventListener('click', deleteReply);
-//     })
-
-//     document.querySelectorAll('.hide-replies-button').forEach(button => {
-//         button.addEventListener('click', hideReplies);
-//     })
-
-//     document.querySelectorAll('.show-replies-button').forEach(button => {
-//         button.addEventListener('click', showReplies);
-
-//     });
-
-//     document.querySelectorAll('.show-tags-button').forEach(button => {
-//         button.addEventListener('click', showTags);
-//     })
-
-//     document.querySelectorAll('.hide-tags-button').forEach(button => {
-//         button.addEventListener('click', hideTags);
-//     })
-
-//     document.querySelectorAll('.add-tag-button').forEach(button => {
-//         button.addEventListener('click', addTag);
-//     })
-
-//     document.querySelectorAll('.delete-tag-button').forEach(button => {
-//         button.addEventListener('click', deleteTag);
-//     })
-
-//     document.querySelector('#profile-button').addEventListener('click', dashboardProfile);
-    
-//     getPosts();
-
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.user-profile-link').forEach(element => {
         element.addEventListener('click', goToUserProfile);
@@ -84,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 async function goToUserProfile(event) {
     const userName = event.target.getAttribute('data-user-name');
     window.location.href = `/api/profile/findByUserName/${encodeURIComponent(userName)}`;
-    // Assuming you're doing client-side navigation, adjust as necessary
 }
 
 async function likePost(event) {
@@ -93,7 +15,7 @@ async function likePost(event) {
     
     const button = event.currentTarget;
     const post_id = button.getAttribute('data-post-id');
-    console.log(`Post ID: ${post_id}`); // Check if post_id is logged correctly
+    console.log(`Post ID: ${post_id}`);
 
     const response = await fetch(`/api/timeline/likes/${post_id}`, {
         method: 'POST',
@@ -121,7 +43,7 @@ async function dislikePost(event) {
     
     const button = event.currentTarget;
     const post_id = button.getAttribute('data-post-id');
-    console.log(`Post ID: ${post_id}`); // Check if post_id is logged correctly
+    console.log(`Post ID: ${post_id}`); 
 
     const response = await fetch(`/api/timeline/likes/${post_id}`, {
         method: 'DELETE',
@@ -142,11 +64,11 @@ document.querySelectorAll('.dislike-post-button').forEach(button => {
     button.addEventListener('click', dislikePost);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const shit = document.querySelector('.like-comment-button')
-    const shitshit = shit.getAttribute('data-post-creator-id')
-    console.log(shitshit)
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//     const shit = document.querySelector('.like-comment-button')
+//     const shitshit = shit.getAttribute('data-post-creator-id')
+//     console.log(shitshit)
+// })
 
 async function addComment(event) {
     event.preventDefault();
@@ -154,7 +76,6 @@ async function addComment(event) {
 
     const button = event.currentTarget;
     const postId = button.getAttribute('data-post-id');
-    // Now also getting the post creator's user ID
     const postElement = document.querySelector(`article[data-post-id="${postId}"]`);
     const postCreatorId = postElement.getAttribute('data-post-creator-id');
 
@@ -166,12 +87,11 @@ async function addComment(event) {
     const response = await fetch(`/api/timeline/comments/${postId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content, postCreatorId }), // Including postCreatorId in the body
+        body: JSON.stringify({ content, postCreatorId }),
     });
 
     if (response.ok) {
         console.log('Comment added successfully');
-        // Optionally, update the comments list dynamically instead of reloading
         document.location.reload();
     } else {
         const errorResponse = await response.json();
@@ -186,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Ensure correct targeting for initialization of event listeners
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.add-comment-button').forEach(button => {
         button.addEventListener('click', addComment);
@@ -200,14 +119,11 @@ document.querySelectorAll('.add-comment-button').forEach(button => {
 
 async function likeComment(event) {
     event.preventDefault();
-    
-    // Use closest() to find the nearest parent article element
     const article = event.target.closest('article.post');
     const postId = article.dataset.postId;
     const postCreatorId = article.dataset.postCreatorId;
     const commentId = event.target.dataset.commentId;
     
-    // Logging to confirm values
     console.log(`Post ID: ${postId}, Post Creator ID: ${postCreatorId}`);
     
     console.log(`Comment ID: ${commentId}, Post ID: ${postId}, Post Creator ID: ${postCreatorId}`);
@@ -220,14 +136,13 @@ async function likeComment(event) {
 
     if (response.ok) {
         console.log('Comment liked successfully');
-        document.location.reload(); // Consider dynamically updating the like count instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to like comment:', errorResponse.message);
     }
 }
 
-// Add event listeners to like comment buttons
 document.querySelectorAll('.like-comment-button').forEach(button => {
     button.addEventListener('click', likeComment);
 });
@@ -238,9 +153,8 @@ async function dislikeComment(event) {
     
     const button = event.currentTarget;
     const commentId = button.getAttribute('data-comment-id');
-    const postId = button.getAttribute('data-post-id'); // Getting the post ID
-    const commentCreatorId = button.getAttribute('data-comment-creator-id'); // Getting the comment creator's user ID
-
+    const postId = button.getAttribute('data-post-id'); 
+    const commentCreatorId = button.getAttribute('data-comment-creator-id');
     console.log(`Comment ID: ${commentId}, Post ID: ${postId}, Comment Creator ID: ${commentCreatorId}`);
 
     const response = await fetch(`/api/timeline/comments/likes/${commentId}`, {
@@ -251,14 +165,13 @@ async function dislikeComment(event) {
 
     if (response.ok) {
         console.log('Comment disliked successfully');
-        document.location.reload(); // Consider dynamically updating the like count instead
+        document.location.reload();
     } else {
         const errorResponse = await response.json();
         console.error('Failed to dislike comment:', errorResponse.message);
     }
 }
 
-// Add event listeners to dislike comment buttons
 document.querySelectorAll('.dislike-comment-button').forEach(button => {
     button.addEventListener('click', dislikeComment);
 });
@@ -269,8 +182,8 @@ async function deleteComment(event) {
     
     const button = event.currentTarget;
     const commentId = button.getAttribute('data-comment-id');
-    const postId = button.getAttribute('data-post-id'); // Getting the post ID
-    const commentCreatorId = button.getAttribute('data-comment-creator-id'); // Getting the comment creator's user ID
+    const postId = button.getAttribute('data-post-id'); 
+    const commentCreatorId = button.getAttribute('data-comment-creator-id'); 
 
     console.log(`Comment ID: ${commentId}, Post ID: ${postId}, Comment Creator ID: ${commentCreatorId}`);
 
@@ -282,20 +195,16 @@ async function deleteComment(event) {
 
     if (response.ok) {
         console.log('Comment deleted successfully');
-        document.location.reload(); // Consider dynamically updating the comment list instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to delete comment:', errorResponse.message);
     }
 }
 
-// Add event listeners to delete comment buttons
 document.querySelectorAll('.delete-comment-button').forEach(button => {
     button.addEventListener('click', deleteComment);
 });
-
-
-
 
 document.querySelectorAll('.reply-button').forEach(button => {
     button.addEventListener('click', function() {
@@ -303,10 +212,8 @@ document.querySelectorAll('.reply-button').forEach(button => {
         if (this.hasAttribute('data-comment-id'))
             {commentId = this.getAttribute('data-comment-id')}
         else {commentId = this.getAttribute('data-reply-id')}
-        // Assuming the reply input div is the next sibling of the button
         const replyInputDiv = this.nextElementSibling;
         replyInputDiv.classList.toggle('hidden');
-        // Toggle for each child of replyInputDiv
         Array.from(replyInputDiv.children).forEach(child => {
             child.classList.toggle('hidden');
         });
@@ -339,16 +246,13 @@ async function replyToComment(event) {
 
     if (response.ok) {
         console.log('Reply added successfully');
-        document.location.reload(); // Consider dynamically updating the reply list instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to add reply:', errorResponse.message);
     }
 }
 
-
-
-// Add event listeners to reply buttons
 document.querySelectorAll('.add-reply-button').forEach(button => {
     button.addEventListener('click', replyToComment);
 });
@@ -359,8 +263,8 @@ async function deleteReply(event) {
     
     const button = event.currentTarget;
     const replyId = button.getAttribute('data-reply-id');
-    const postId = button.closest('article').getAttribute('data-post-id') // Getting the post ID
-    const replyCreatorId = button.getAttribute('data-reply-creator-id'); // Getting the reply creator's user ID
+    const postId = button.closest('article').getAttribute('data-post-id')
+    const replyCreatorId = button.getAttribute('data-reply-creator-id');
 
     console.log(`Reply ID: ${replyId}, Post ID: ${postId}, Reply Creator ID: ${replyCreatorId}`);
 
@@ -372,28 +276,24 @@ async function deleteReply(event) {
 
     if (response.ok) {
         console.log('Reply deleted successfully');
-        document.location.reload(); // Consider dynamically updating the reply list instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to delete reply:', errorResponse.message);
     }
 }
 
-// Add event listeners to delete reply buttons
 document.querySelectorAll('.delete-reply-button').forEach(button => {
     button.addEventListener('click', deleteReply);
 });
 
 async function likeReply(event) {
     event.preventDefault();
-    
-    // Use closest() to find the nearest parent article element
     const article = event.target.closest('article.post');
     const postId = article.dataset.postId;
     const postCreatorId = article.dataset.postCreatorId;
     const replyId = event.target.dataset.replyId;
     
-    // Logging to confirm values
     console.log(`Post ID: ${postId}, Post Creator ID: ${postCreatorId}`);
     
     console.log(`Reply ID: ${replyId}, Post ID: ${postId}, Post Creator ID: ${postCreatorId}`);
@@ -406,14 +306,13 @@ async function likeReply(event) {
 
     if (response.ok) {
         console.log('Reply liked successfully');
-        document.location.reload(); // Consider dynamically updating the like count instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to like reply:', errorResponse.message);
     }
 }
 
-// Add event listeners to like reply buttons
 document.querySelectorAll('.like-reply-button').forEach(button => {
     button.addEventListener('click', likeReply);
 });
@@ -437,31 +336,26 @@ async function dislikeReply(event) {
 
     if (response.ok) {
         console.log('Reply disliked successfully');
-        document.location.reload(); // Consider dynamically updating the like count instead
+        document.location.reload(); 
     } else {
         const errorResponse = await response.json();
         console.error('Failed to dislike reply:', errorResponse.message);
     }
 }
 
-// Add event listeners to dislike reply buttons
 async function showReplies(event) {
     event.preventDefault();
     console.log('showReplies function called');
     
-    // Assuming the button has a data-comment-id attribute since we're showing/hiding replies for a comment
     const button = event.currentTarget;
     const commentId = button.getAttribute('data-comment-id');
     console.log(`Comment ID: ${commentId}`);
 
-    // Find the closest parent li element for the comment, then the replies container within it
     const commentContainer = button.closest('li[data-comment-id="' + commentId + '"]');
     const repliesContainer = commentContainer.querySelector('.replies');
     
-    // Toggle the visibility of the replies container
     repliesContainer.classList.toggle('hidden');
 
-    // Update the button text based on the visibility state of the replies container
     if (repliesContainer.classList.contains('hidden')) {
         button.textContent = 'Show Replies';
     } else {
@@ -469,13 +363,10 @@ async function showReplies(event) {
     }
 }
 
-// Attaching event listeners to all "Show Replies" buttons
 document.querySelectorAll('.show-replies-button').forEach(button => {
     button.addEventListener('click', showReplies);
 });
 
-
-// Add event listeners to show replies buttons
 document.querySelectorAll('.show-replies-button').forEach(button => {
     button.addEventListener('click', showReplies);
 });

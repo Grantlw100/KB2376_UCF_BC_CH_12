@@ -5,8 +5,9 @@
     </header>
 
     <div class="profile-picture">
-        <label for="profile-picture">Profile Picture:</label>
-        <img src="{{profilePictureUrl}}" alt="Your Profile Picture">
+        <h1 for="profile-picture">Profile Picture:</h1>
+        <img src="/assets/maxresdefault.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 200px;">
+            
     </div>
 
     {{#if posts.length}}
@@ -33,9 +34,9 @@
                     <div>
                         <p>Likes: {{this.likesCount}}</p>
                         {{#if this.userLiked}}
-                            <button class="dislike-post-button" data-post-id="{{this.id}}">Unlike</button>
+                            <button class=" btn btn-danger dislike-post-button" data-post-id="{{this.id}}">Unlike</button>
                         {{else}}
-                            <button class="like-post-button" data-post-id="{{this.id}}" data-user-id="{{../loggedInUserId}}">Like</button>
+                            <button class="btn btn-success like-post-button" data-post-id="{{this.id}}" data-user-id="{{../loggedInUserId}}">Like</button>
                         {{/if}}
                     </div>
                     <div>
@@ -47,21 +48,21 @@
                                     {{this.content}}
                                     <p>Likes: {{this.likesCount}}</p>
                                     {{#if this.userLiked}}
-                                        <button class="dislike-comment-button" data-comment-id="{{this.id}}" data-post-id="{{../id}}" data-comment-creator-id="{{this.commentCreatorId}}">Unlike</button>
+                                        <button class="btn btn-danger dislike-comment-button" data-comment-id="{{this.id}}" data-post-id="{{../id}}" data-comment-creator-id="{{this.commentCreatorId}}">Unlike</button>
                                     {{else}}
-                                        <button class="like-comment-button" data-comment-id="{{this.id}}" data-post-id="{{../id}}" data-comment-creator-id="{{this.commentCreatorId}}">Like</button>
+                                        <button class="btn btn-success like-comment-button" data-comment-id="{{this.id}}" data-post-id="{{../id}}" data-comment-creator-id="{{this.commentCreatorId}}">Like</button>
                                     {{/if}}
-                                    <button class="reply-button" data-comment-id="{{this.id}}">Reply</button>
+                                    <button class="btn btn-warning reply-button" data-comment-id="{{this.id}}">Reply</button>
                                     <div class="reply-input hidden">
                                         <textarea class="hidden" placeholder="Add a reply"></textarea>
-                                        <button class="hidden add-reply-button" data-comment-id="{{this.id}}">Send</button>
-                                        <button class="hidden">Cancel</button>
+                                        <button class="hidden btn btn-primary add-reply-button" data-comment-id="{{this.id}}">Send</button>
+                                        <button class="hidden btn btn-danger">Cancel</button>
                                     </div>
                                     {{#if this.isUserComment}}
-                                        <button class="delete-comment-button" data-comment-id="{{this.id}}">Delete</button>
+                                        <button class="btn btn-danger delete-comment-button" data-comment-id="{{this.id}}">Delete</button>
                                     {{/if}}
                                     {{#if this.replies.length}}
-                                    <button class="show-replies-button" data-comment-id="{{this.id}}">Show Replies</button>
+                                    <button class="btn btn-primary show-replies-button" data-comment-id="{{this.id}}">Show Replies</button>
                                     <ul class="hidden replies">
                                         {{#each this.replies}}
                                             <li data-reply-id="{{this.id}}">
@@ -69,12 +70,12 @@
                                                 {{this.content}}
                                                 <p>Likes: {{this.likesCount}}</p>
                                                 {{#if this.userLiked}}
-                                                    <button class="dislike-reply-button" data-reply-id="{{this.id}}">Unlike</button>
+                                                    <button class="btn btn-danger dislike-reply-button" data-reply-id="{{this.id}}">Unlike</button>
                                                 {{else}}
-                                                    <button class="like-reply-button" data-reply-id="{{this.id}}">Like</button>
+                                                    <button class="btn btn-success like-reply-button" data-reply-id="{{this.id}}">Like</button>
                                                 {{/if}}
                                                 {{#if this.isUserReply}}
-                                                    <button class="delete-reply-button" data-reply-id="{{this.id}}">Delete</button>
+                                                    <button class=" btn btn-danger delete-reply-button" data-reply-id="{{this.id}}">Delete</button>
                                                 {{/if}}
                                             </li>
                                         {{/each}}
@@ -84,14 +85,18 @@
                             {{/each}}
                         </ul>
                         <textarea class="comment-input" placeholder="Add a comment"></textarea>
-                        <button class="add-comment-button" data-post-id="{{this.id}}">Add Comment</button>
+                        <button class="btn btn-primary add-comment-button" data-post-id="{{this.id}}">Add Comment</button>
                     </div>
                 </article>
             {{/each}}
         </div>
     {{else}}
-        <p>No posts to display.</p>
+        <p>No posts to display. Dont be bashful! Follow some more accounts and fill your dashboard!</p>
     {{/if}}
 </section>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/js/dashboard.js"></script>
+

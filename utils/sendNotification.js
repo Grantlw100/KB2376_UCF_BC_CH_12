@@ -5,8 +5,11 @@ async function sendNotification({ type, sender_id, receiver_id, reference_id, en
     const sender = await User.findByPk(sender_id);
     let body;
     switch (type) {
-        case 'tag':
+        case 'tagged':
             body = `You were tagged in a post by ${sender.userName}`;
+            break;
+        case 'tagged comment':
+            body = `You were tagged in a comment by ${sender.userName}`;
             break;
         case 'messaged':
             body = `You have a new message from ${sender.userName}`;
@@ -20,10 +23,19 @@ async function sendNotification({ type, sender_id, receiver_id, reference_id, en
         case'followed':
             body = `${sender.userName} followed you`;
             break;
+        case 'replied':
+            body = `${sender.userName} replied to your comment`;
+            break;
+        case 'liked comment':
+            body = `${sender.userName} liked your comment`;
+            break;
+        case 'messaged':
+            body = `You have a new message from ${sender.userName}`;
+            break;
         default:
             break;
     }
-
+    
     let messageContent = customMessage ? customMessage : null;
 
     await Notification.create({
