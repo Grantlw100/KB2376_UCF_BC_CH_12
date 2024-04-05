@@ -1,0 +1,139 @@
+header, .project:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .no-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #1b89bc;
+    text-decoration: none;
+    font-size: 100%;
+  }
+  
+  .no-button:hover {
+    color: #065b83;
+    text-decoration: underline;
+  }
+  
+  .dollar-amount {
+    color: #056605;
+    font-weight: bold;
+    margin-left: -5px;
+  }
+  
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* General reset for the nav items */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Styling for the dropdown button */
+#Dropdown {
+  cursor: pointer;
+  background-color: #007bff; /* Fallback color */
+  background-image: linear-gradient(to right, #0062E6, #33AEFF);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem; /* 6px */
+  padding: 0.5rem 1.5rem;
+}
+
+#Dropdown:hover {
+  background-image: linear-gradient(to right, #0056b3, #6699ff);
+}
+
+/* Hidden class for toggling display */
+.hidden {
+  display: none;
+}
+
+/* Dropdown menu styling */
+#dropdown {
+  position: absolute;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.2);
+  border-radius: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+#dropdown ul {
+  margin: 0;
+}
+
+#dropdown li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #333333;
+  text-decoration: none;
+}
+
+#dropdown li a:hover {
+  background-color: #f8f9fa;
+}
+

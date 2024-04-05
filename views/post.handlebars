@@ -1,0 +1,19 @@
+
+<div class="container mt-5">
+    <h1>Create New Post</h1>
+    <form class="form post-form" action="/posts/create" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input class="form-control" type="text" id="title" name="title" required />
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content:</label>
+            <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+<script src="./js/post.js"></script>

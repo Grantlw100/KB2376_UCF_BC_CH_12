@@ -1,0 +1,45 @@
+<section class="container mt-5">
+    <h1>Messages</h1>
+    <p>Send a message to a friend</p>
+    <form id="message-form">
+        <div class="form-group">
+            <label for="recipient">Recipient:</label>
+            <input type="text" class="form-control" id="recipient" name="recipient" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Message:</label>
+            <textarea id="message" class="form-control" id="content" name="content" required></textarea>
+        </div>
+        <button  id="send-message" class="btn btn-primary">Send</button>
+    </form>
+
+    <div class="mt-4">
+        <h2>Your Messages</h2>
+        <ul class="list-group">
+            {{#each messages}}
+            <li data-sender-userName="{{this.senderName}}" class="list-group-item">
+                <strong>{{this.senderName}}:</strong> {{this.message}} <small>{{format_date this.createdAt}}</small>
+                <button class="reply-button" data-sender-userName="{{this.senderName}}">Reply</button>
+                                    <div class="reply-input hidden">
+                                        <textarea class="hidden" id="reply-message" placeholder="Add a reply"></textarea>
+                                        <button class="hidden send-reply" data-sender-userName="{{../senderName}}">Send</button>
+                                    </div>
+            </li>
+            {{/each}}
+        </ul>
+
+    </div>
+
+    <div class="mt-4">
+        <h2>Notifications</h2>
+        <ul class="list-group">
+            {{#each notifications}}
+            <li class="list-group-item">
+                <strong>{{this.senderName}}:</strong> {{this.body}} <small>{{format_date this.createdAt}}</small>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</section>
+
+<script src="/js/messages.js"></script>

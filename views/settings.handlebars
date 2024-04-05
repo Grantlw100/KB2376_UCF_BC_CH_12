@@ -1,0 +1,63 @@
+<div class="settings-container">
+    <h1>Settings</h1>
+    <body class="hats" data-user-id="{{user_id}}">
+
+    <p>Change your settings here</p>
+
+    <!-- General Settings Form -->
+    <form class="form settings-for-general">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-input" type="text" id="name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-input" type="email" id="email" name="email" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-input" type="password" id="password" name="password" />
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+
+    <!-- Profile Picture Upload Form -->
+    {{!-- <form class="form settings-form" action="#" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="profile-picture">Profile Picture:</label>
+            <input class="form-input" type="file" id="profile-picture" name="profile-picture" />
+        </div>
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </form> --}}
+
+    
+
+    <!-- Notification Settings Form -->
+    <form class="form settings-form" id="notification-settings-form">
+        <div class="form-group">
+            <label class="switch">
+                <input type="checkbox" id="notifications" name="notifications_enabled" {{#if user.notifications_enabled}}checked{{/if}}>
+                <span class="slider round"></span>
+            </label>
+            <label for="notifications">Notifications</label>
+        </div>
+        <div class="form-group">
+            <label class="switch">
+                <input type="checkbox" id="darkmode" name="dark_mode_enabled" {{#if user.dark_mode_enabled}}checked{{/if}}>
+                <span class="slider round"></span>
+            </label>
+            <label for="darkmode">Dark Mode</label>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+
+<!-- Delete Account Form -->
+    <form class="form settings-for-delete" action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+        <div class="form-group">
+            <label for="delete-account">Delete Account:</label>
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </div>
+    </form>
+
+    <script src="/js/settings.js"></script>

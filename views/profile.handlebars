@@ -1,0 +1,24 @@
+<body class="hats" data-user-id="{{user_id}}">
+<div class="container mt-5">
+    <h1>Profile</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{profilePicture}}" alt="Profile Picture" class="img-thumbnail" id="profile-picture">
+            <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</button>
+        </div>
+        <div class="col-md-8">
+            <h2>{{userName}}</h2>
+            <p>Name: {{name}}</p>
+            <h3>Posts</h3>
+            <ul class="list-group">
+                {{#each posts}}
+                <li class="list-group-item">{{this.title}} - <small>{{this.createdAt}}</small></li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<nav><a href="/settings">Settings</a></nav>
+
+<script src="/js/profile.js"></script>

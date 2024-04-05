@@ -1,0 +1,34 @@
+
+<section class="hero">
+    <h1>Welcome to Our Application</h1>
+    <p>Discover, connect, and share with people around the world.</p>
+    {{#unless logged_in}}
+    <a href="/signup" class="btn btn-primary">Sign Up Now</a>
+    {{/unless}}
+</section>
+
+<section class="features">
+    <h2>Features</h2>
+    <div class="features-list">
+        <div class="feature-item">
+            <img src="/path/to/icon1" alt="Create and share posts">
+            <h3>Create and share posts</h3>
+            <p>Share your thoughts and connect with others.</p>
+        </div>
+        <div class="feature-item">
+            <img src="/path/to/icon2" alt="Follow interesting profiles">
+            <h3>Follow interesting profiles</h3>
+            <p>Discover content from creators you love.</p>
+        </div>
+        <div class="feature-item">
+            <img src="/path/to/icon3" alt="Customize your user settings">
+            <h3>Customize your user settings</h3>
+            <p>Take control of your experience.</p>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <!-- Testimonials content goes here -->
+</section>
