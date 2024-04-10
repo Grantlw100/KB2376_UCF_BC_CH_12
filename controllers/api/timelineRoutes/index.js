@@ -1,6 +1,6 @@
 const router = require('express').Router();   
 
-const CommentRoutes = require('./CommentRoutes');
+const CommentRoutes = require('./commentRoutes');
 const PLikeRoutes = require('./PLikeRoutes');
 const tagRoutes = require('./tagRoutes');
 
